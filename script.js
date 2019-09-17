@@ -25,7 +25,6 @@ const preloader = setTimeout(() => {
         return fetch(`https://api.github.com/users/${userName}`);
     })
       .then(response => response.json())
-      
       .then(json => {
         if (json.message == 'Not Found') {
           let div = document.createElement('div');
@@ -33,6 +32,10 @@ const preloader = setTimeout(() => {
           information.appendChild(div);
           div.style.fontSize = "30px";
         } else {
+            let login = document.createElement('h1')
+            login.innerHTML = json.login;
+            information.appendChild(login);
+
             let nickName = document.createElement('a');
             nickName.setAttribute('href', json.html_url);
             nickName.innerHTML = json.name;
